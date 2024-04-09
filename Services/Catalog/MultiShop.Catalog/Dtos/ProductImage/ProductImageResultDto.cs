@@ -1,6 +1,6 @@
 ﻿namespace MultiShop.Catalog.Dtos.ProductImage;
 
-public sealed class ResultProductImageDto
+public sealed class ProductImageResultDto
 {
     public string ProductImageId { get; set; } = string.Empty;
 

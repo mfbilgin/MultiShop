@@ -5,7 +5,7 @@ using MultiShop.Discount.Entities;
 
 namespace MultiShop.Discount.Context;
 
-public class DapperContext(IConfiguration configuration) : DbContext
+public sealed class DapperContext(IConfiguration configuration) : DbContext
 {
     private readonly string? _connectionString = configuration.GetConnectionString("DefaultConnection");
 

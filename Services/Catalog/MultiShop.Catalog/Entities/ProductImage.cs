@@ -9,7 +9,7 @@ public sealed class ProductImage
     [BsonRepresentation(BsonType.ObjectId)]
     public string ProductImageId { get; set; } = string.Empty;
 
-    [BsonRepresentation(BsonType.Array)] public List<string> Images { get; set; } = [];
+    public List<string> Images { get; set; } = [];
 
     public string ProductId { get; set; } = string.Empty;
     [BsonIgnore] public Product Product { get; set; } = default!;

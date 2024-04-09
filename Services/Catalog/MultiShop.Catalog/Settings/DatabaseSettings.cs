@@ -1,6 +1,6 @@
 ﻿namespace MultiShop.Catalog.Settings;
 
-public class DatabaseSettings : IDatabaseSettings
+public sealed class DatabaseSettings : IDatabaseSettings
 {
     public string CategoryCollectionName { get; set; } = string.Empty;
     public string ProductCollectionName { get; set; } = string.Empty;

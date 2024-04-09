@@ -1,6 +1,6 @@
 ﻿namespace MultiShop.Catalog.Dtos.Category;
 
-public class CategoryGetByIdDto
+public sealed class CategoryGetByIdDto
 {
     public string CategoryId { get; set; } = string.Empty;
 

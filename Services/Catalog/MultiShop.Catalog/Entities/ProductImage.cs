@@ -7,12 +7,10 @@ public class ProductImage
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public string ProductImageId { get; set; }
+    public string ProductImageId { get; set; } = string.Empty;
 
-    [BsonRepresentation(BsonType.Array)]
-    public List<string> Images { get; set; }
+    [BsonRepresentation(BsonType.Array)] public List<string> Images { get; set; } = [];
 
-    public string ProductId { get; set; }
-    [BsonIgnore]
-    public Product Product { get; set; }
+    public string ProductId { get; set; } = string.Empty;
+    [BsonIgnore] public Product Product { get; set; } = default!;
 }

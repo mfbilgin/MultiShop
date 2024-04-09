@@ -2,15 +2,15 @@
 
 public class ProductCreateDto
 {
-    public string ProductName { get; set; }
+    public string ProductName { get; set; } = string.Empty;
 
     public decimal ProductPrice { get; set; }
     
     public int ProductStock { get; set; }
     
-    public string ProductImageUrl { get; set; }
+    public string ProductImageUrl { get; set; } = string.Empty;
     
-    public string ProductDescription { get; set; }
+    public string ProductDescription { get; set; } = string.Empty;
 
-    public string CategoryId { get; set; }
+    public string CategoryId { get; set; } = string.Empty;
 }

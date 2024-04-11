@@ -11,7 +11,7 @@ public sealed class DapperContext(IConfiguration configuration) : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=MFBILGIN;Initial Catalog=MultiShopDiscountDatabase;Integrated Security=true;TrustServerCertificate=True");
+        optionsBuilder.UseSqlServer(_connectionString);
     }
 
     public DbSet<Coupon> Coupons { get; set; }

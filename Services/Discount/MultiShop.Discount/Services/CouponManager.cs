@@ -16,7 +16,7 @@ public sealed class CouponManager(DapperContext context) : ICouponService
 
     public async Task CreateCouponAsync(CouponCreateDto couponCreateDto)
     {
-        const string query = "INSERT INTO (CouponCode, Rate, IsActive, ValidDate) VALUES (@CouponCode, @Rate, @IsActive, @ValidDate)";
+        const string query = "INSERT INTO Coupons (CouponCode, Rate, IsActive, ValidDate) VALUES (@CouponCode, @Rate, @IsActive, @ValidDate)";
         var parameters = new DynamicParameters();
         parameters.Add("@CouponCode", couponCreateDto.CouponCode);
         parameters.Add("@Rate", couponCreateDto.Rate);

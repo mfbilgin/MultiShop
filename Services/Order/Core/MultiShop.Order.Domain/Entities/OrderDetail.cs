@@ -1,6 +1,6 @@
 ﻿namespace MultiShop.Order.Domain.Entities;
 
-public sealed class OrderDetail
+public sealed class OrderDetail : IEntity
 {
     public int OrderDetailId { get; set; }
     public string ProductId { get; set; } = string.Empty;

@@ -14,6 +14,6 @@ public class CreateAddressCommandHandler(IRepository<Domain.Entities.Address> re
             District = request.District,
             UserId = request.UserId
         };
-        await repository.AddAsync(address);
+        await repository.CreateAsync(address);
     }
 }

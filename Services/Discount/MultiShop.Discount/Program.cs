@@ -1,3 +1,6 @@
+using MultiShop.Discount.Context;
+using MultiShop.Discount.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+builder.Services.AddSingleton<DapperContext>();
+builder.Services.AddSingleton<ICouponService,CouponManager>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

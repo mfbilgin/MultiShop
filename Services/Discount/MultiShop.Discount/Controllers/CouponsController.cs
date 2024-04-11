@@ -29,7 +29,7 @@ public class CouponsController(ICouponService couponService) : ControllerBase
         return Ok("Coupon updated successfully.");
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete]
     public async Task<IActionResult> DeleteCouponAsync(int id)
     {
         await couponService.DeleteCouponAsync(id);
@@ -41,5 +41,12 @@ public class CouponsController(ICouponService couponService) : ControllerBase
     {
         var coupon = await couponService.GetCouponByIdAsync(id);
         return Ok(coupon);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> CouponList()
+    {
+        var coupons = await couponService.GetAllAsync();
+        return Ok(coupons);
     }
 }

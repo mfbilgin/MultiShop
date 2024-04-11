@@ -1,5 +1,3 @@
-using MultiShop.Order.Application.Features.CQRS.Handlers.Address;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

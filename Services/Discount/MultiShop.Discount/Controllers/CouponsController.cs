@@ -9,7 +9,7 @@ namespace MultiShop.Discount.Controllers;
 public class CouponsController(ICouponService couponService) : ControllerBase
 {
     [HttpGet]
-    public async Task<IActionResult> GetAllAsync()
+    public async Task<IActionResult> CouponList()
     {
         var coupons = await couponService.GetAllAsync();
         return Ok(coupons);
@@ -42,11 +42,5 @@ public class CouponsController(ICouponService couponService) : ControllerBase
         var coupon = await couponService.GetCouponByIdAsync(id);
         return Ok(coupon);
     }
-
-    [HttpGet]
-    public async Task<IActionResult> CouponList()
-    {
-        var coupons = await couponService.GetAllAsync();
-        return Ok(coupons);
-    }
+    
 }

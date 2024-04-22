@@ -8,6 +8,7 @@ public class UpdateAddressCommandHandler(IRepository<Domain.Entities.Address> re
     public async Task Handle(UpdateAddressCommand request)
     {
         var address = await repository.GetByIdAsync(request.AddressId);
+        if(address is null) return;
         address.City = request.City;
         address.District = request.District;
         address.UserId = request.UserId;

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using MultiShop.Order.Application.Features.CQRS.Handlers.Address;
 using MultiShop.Order.Application.Features.CQRS.Handlers.OrderDetail;
 using MultiShop.Order.Application.Interfaces;
@@ -6,6 +7,13 @@ using MultiShop.Order.Persistence.Contexts;
 using MultiShop.Order.Persistence.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(jwtBearerOptions =>
+{
+    jwtBearerOptions.Authority = builder.Configuration["IdentityServerUrl"];
+    jwtBearerOptions.Audience = "ResourceOrder";
+    jwtBearerOptions.RequireHttpsMetadata = false;
+});
 
 builder.Services.AddScoped<GetAddressQueryHandler>();
 builder.Services.AddScoped<GetAddressByIdQueryHandler>();
@@ -36,6 +44,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseHttpsRedirection();
 app.MapControllers();

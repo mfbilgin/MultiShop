@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MultiShop.Order.Application.Features.CQRS.Commands.Address;
 using MultiShop.Order.Application.Features.CQRS.Handlers.Address;
 using MultiShop.Order.Application.Features.CQRS.Queries.Address;
 
 namespace WebAPI.Controllers;
 
+[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class AddressesController(GetAddressQueryHandler getAllHandler,GetAddressByIdQueryHandler getByIdHandler,CreateAddressCommandHandler createHandler,UpdateAddressCommandHandler updateHandler,RemoveAddressCommandHandler removeHandler) : ControllerBase

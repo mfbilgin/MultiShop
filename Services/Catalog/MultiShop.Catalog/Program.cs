@@ -1,5 +1,5 @@
 using System.Reflection;
-using Microsoft.CodeAnalysis.Options;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using MultiShop.Catalog.Services.Category;
 using MultiShop.Catalog.Services.Product;
@@ -9,19 +9,26 @@ using MultiShop.Catalog.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<ICategoryService,CategoryManager>();
-builder.Services.AddScoped<IProductService,ProductManager>();
-builder.Services.AddScoped<IProductDetailService,ProductDetailManager>();
-builder.Services.AddScoped<IProductImageService,ProductImageManager>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(jwtBearerOptions =>
+{
+    jwtBearerOptions.Authority = builder.Configuration["IdentityServerUrl"];
+    jwtBearerOptions.Audience = "ResourceCatalog";
+    jwtBearerOptions.RequireHttpsMetadata = false;
+});
+
+builder.Services.AddScoped<ICategoryService, CategoryManager>();
+builder.Services.AddScoped<IProductService, ProductManager>();
+builder.Services.AddScoped<IProductDetailService, ProductDetailManager>();
+builder.Services.AddScoped<IProductImageService, ProductImageManager>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
-builder.Services.AddScoped<IDatabaseSettings>(provider => provider.GetRequiredService<IOptions<DatabaseSettings>>().Value);
+builder.Services.AddScoped<IDatabaseSettings>(provider =>
+    provider.GetRequiredService<IOptions<DatabaseSettings>>().Value);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -35,6 +42,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseHttpsRedirection();
 
 app.MapControllers();

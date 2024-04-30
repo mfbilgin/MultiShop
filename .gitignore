@@ -2,3 +2,4 @@ bin/
 obj/
 /packages/
 .idea/
+IdentityServer/MultiShop.IdentityServer/wwwroot/

@@ -3,3 +3,5 @@ obj/
 /packages/
 .idea/
 IdentityServer/MultiShop.IdentityServer/wwwroot/
+IdentityServer/MultiShop.IdentityServer/updateUI.ps1
+IdentityServer/MultiShop.IdentityServer/Views/
